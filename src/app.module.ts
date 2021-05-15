@@ -3,6 +3,11 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { UserModule } from './modules/user/user.module';
+import { PostModule } from './modules/post/post.module';
+import { CategoryModule } from './modules/category/category.module';
+import { ProductModule } from './modules/product/product.module';
+import { OrderModule } from './modules/order/order.module';
+import { OrderDetailModule } from './modules/order-detail/order-detail.module';
 
 @Module({
   imports: [
@@ -17,6 +22,11 @@ import { UserModule } from './modules/user/user.module';
       synchronize: true,
     }),
     UserModule,
+    PostModule,
+    CategoryModule,
+    ProductModule,
+    OrderModule,
+    OrderDetailModule
   ],
   controllers: [AppController],
   providers: [AppService],
