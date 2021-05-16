@@ -8,6 +8,7 @@ import { CategoryModule } from './modules/category/category.module';
 import { ProductModule } from './modules/product/product.module';
 import { OrderModule } from './modules/order/order.module';
 import { OrderDetailModule } from './modules/order-detail/order-detail.module';
+import { BannerModule } from './modules/banner/banner.module';
 
 @Module({
   imports: [
@@ -26,7 +27,8 @@ import { OrderDetailModule } from './modules/order-detail/order-detail.module';
     CategoryModule,
     ProductModule,
     OrderModule,
-    OrderDetailModule
+    OrderDetailModule,
+    BannerModule
   ],
   controllers: [AppController],
   providers: [AppService],

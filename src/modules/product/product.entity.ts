@@ -18,6 +18,8 @@ export class Product extends BaseEntity {
   @Column({type: 'int'})
   stock: number;
 
+  @Column({name: 'category_id'})
+  categoryId: number;
   @ManyToOne(type => Category, category => category.products)
   @JoinColumn({name: 'category_id'})
   category: Category;

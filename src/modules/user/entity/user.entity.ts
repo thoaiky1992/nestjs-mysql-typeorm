@@ -1,7 +1,7 @@
 import { Post } from 'src/modules/post/entity/post.entity';
 import { Entity, PrimaryGeneratedColumn, Column, BaseEntity, OneToMany } from 'typeorm';
 
-@Entity()
+@Entity({ name: 'users'})
 export class User extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;

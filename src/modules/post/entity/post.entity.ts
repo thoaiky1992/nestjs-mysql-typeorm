@@ -1,7 +1,7 @@
 import { User } from 'src/modules/user/entity/user.entity';
 import { Entity, PrimaryGeneratedColumn, Column, BaseEntity, ManyToOne, JoinColumn } from 'typeorm';
 
-@Entity()
+@Entity({name: 'posts'})
 export class Post extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
@@ -12,10 +12,9 @@ export class Post extends BaseEntity {
   @Column()
   body: string;
 
-  @Column()
-  userId: string;
-
+  @Column({name: 'user_id'})
+  userId: number
   @ManyToOne(type => User, user => user.posts)
-  @JoinColumn({name: 'userId'})
+  @JoinColumn({name: 'user_id'})
   user: User
 }

@@ -24,6 +24,8 @@ export class OrderDetail extends BaseEntity {
   @Column('bigint')
   total: number
 
+  @Column({name: 'order_id'})
+  orderId: number
   @ManyToOne(type => Order, order => order.orderDetails)
   @JoinColumn({name: 'order_id'})
   order: Order
