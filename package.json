@@ -18,7 +18,14 @@
     "test:watch": "jest --watch",
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
-    "test:e2e": "jest --config ./test/jest-e2e.json"
+    "test:e2e": "jest --config ./test/jest-e2e.json",
+    "docker:build": "docker build -t image-backend-api .",
+    "docker:run": "docker container run -d --name container-backend-api -v \"$(pwd)\"/public:/user/src/app/public --restart on-failure -it -p 3001:3000 --network=laravel-app_app-network image-backend-api",
+    "docker:remove": "docker container rm container-backend-api",
+    "docker:stop": "docker container stop container-backend-api",
+    "docker:start": "docker container start container-backend-api",
+    "docker:restart": "docker container container-backend-api",
+    "docker:deploy": "npm run docker:build && npm run docker:stop || true && npm run docker:remove || true && npm run docker:run"
   },
   "dependencies": {
     "@nestjs/common": "^7.6.15",
