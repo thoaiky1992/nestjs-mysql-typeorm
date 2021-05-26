@@ -9,12 +9,13 @@ import { ProductModule } from './modules/product/product.module';
 import { OrderModule } from './modules/order/order.module';
 import { OrderDetailModule } from './modules/order-detail/order-detail.module';
 import { BannerModule } from './modules/banner/banner.module';
+import { AuthModule } from './modules/auth/auth.module';
 
 @Module({
   imports: [
     TypeOrmModule.forRoot({
       type: 'mysql',
-      host: 'db',
+      host: 'localhost',
       port: 3306,
       username: 'root',
       password: 'thoaiky1992',
@@ -28,7 +29,8 @@ import { BannerModule } from './modules/banner/banner.module';
     ProductModule,
     OrderModule,
     OrderDetailModule,
-    BannerModule
+    BannerModule,
+    AuthModule
   ],
   controllers: [AppController],
   providers: [AppService],
