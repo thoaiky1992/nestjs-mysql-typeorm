@@ -16,7 +16,7 @@ config();
     PassportModule,
     JwtModule.register({
       secret: process.env.JWT_SECRETE,
-      signOptions: { expiresIn: '30 days' },
+      signOptions: { expiresIn: process.env.JWT_EXPIRE },
     }),
     UserModule,
   ],

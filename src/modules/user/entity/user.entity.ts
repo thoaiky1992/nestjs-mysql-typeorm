@@ -21,7 +21,7 @@ export class User extends BaseEntity {
   @Column()
   password: string;
 
-  @Column("nvarchar", { default: AuthRole.ADMIN })
+  @Column("nvarchar", { default: AuthRole.CLIENT })
   role: RoleType;
 
   @OneToMany(type => Post, post => post.user)
