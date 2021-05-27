@@ -3,7 +3,10 @@ import { Entity, PrimaryGeneratedColumn, Column, BaseEntity, OneToMany } from 't
 
 export type RoleType = 'ADMIN' | 'CLIENT'
 export const RoleArray: RoleType[] = ['ADMIN', 'CLIENT']
-
+export enum AuthRole {
+  ADMIN = 'ADMIN',
+  CLIENT = 'CLIENT'
+}
 @Entity({ name: 'users'})
 export class User extends BaseEntity {
   @PrimaryGeneratedColumn()
@@ -18,7 +21,7 @@ export class User extends BaseEntity {
   @Column()
   password: string;
 
-  @Column("nvarchar", { default: 'CLIENT' })
+  @Column("nvarchar", { default: AuthRole.ADMIN })
   role: RoleType;
 
   @OneToMany(type => Post, post => post.user)

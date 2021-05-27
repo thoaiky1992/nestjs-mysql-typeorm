@@ -4,26 +4,15 @@ import { Crud, CrudController } from '@nestjsx/crud';
 import { JwtAuthGuard } from 'src/modules/auth/jwt.guard';
 import { HasRoles } from 'src/modules/auth/role.decorator';
 import { RolesGuard } from 'src/modules/auth/role.guard';
-import { User } from '../entity/user.entity';
+import { User, AuthRole } from '../entity/user.entity';
 import { UserService } from '../services/user.service';
+import { UserCrudOption } from './crud-option';
 
-@HasRoles('ADMIN', 'CLIENT')
+@HasRoles(AuthRole.ADMIN, AuthRole.CLIENT)
 @UseGuards(JwtAuthGuard, RolesGuard)
 @ApiBearerAuth()
 @ApiTags('User')
-@Crud({
-  model: {
-    type: User,
-  },
-  query: {
-    join: {
-      posts: {
-        eager: true
-      }
-    },
-    exclude: ['password', 'role']
-  }
-})
+@Crud(UserCrudOption())
 @Controller('users')
 export class UserController implements CrudController<User> {
   constructor(
