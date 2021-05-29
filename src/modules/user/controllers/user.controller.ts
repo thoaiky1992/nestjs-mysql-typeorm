@@ -1,19 +1,11 @@
-import { Controller, UseGuards } from '@nestjs/common';
-import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
-import { Crud, CrudController } from '@nestjsx/crud';
-import { JwtAuthGuard } from 'src/modules/auth/jwt.guard';
-import { HasRoles } from 'src/modules/auth/role.decorator';
-import { RolesGuard } from 'src/modules/auth/role.guard';
-import { User, AuthRole } from '../entity/user.entity';
+import { CrudController } from '@nestjsx/crud';
+import { CrudDecoratorController } from 'src/libraries/crud/crud-controller.decorator';
+import { User } from '../entity/user.entity';
 import { UserService } from '../services/user.service';
-import { UserCrudOption } from './crud-option';
+import { UserCrudRequestOption } from './crud-option';
 
-@HasRoles(AuthRole.ADMIN, AuthRole.CLIENT)
-@UseGuards(JwtAuthGuard, RolesGuard)
-@ApiBearerAuth()
-@ApiTags('User')
-@Crud(UserCrudOption())
-@Controller('users')
+
+@CrudDecoratorController('users', User, null, UserCrudRequestOption())
 export class UserController implements CrudController<User> {
   constructor(
     public service: UserService,

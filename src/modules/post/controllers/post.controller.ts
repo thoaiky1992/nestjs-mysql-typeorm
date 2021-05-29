@@ -1,23 +1,10 @@
-import { Controller } from '@nestjs/common';
-import { ApiTags } from '@nestjs/swagger';
-import { Crud, CrudController } from '@nestjsx/crud';
+import { CrudController } from '@nestjsx/crud';
+import { CrudDecoratorController } from 'src/libraries/crud/crud-controller.decorator';
+import { AuthRole } from 'src/modules/user/entity/user.entity';
 import { Post } from '../entity/post.entity';
 import { PostService } from '../services/post.service';
 
-@ApiTags('Post')
-@Crud({
-  model: {
-    type: Post,
-  },
-  query: {
-    join: {
-      user: {
-        eager: true
-      }
-    }
-  }
-})
-@Controller('posts')
+@CrudDecoratorController('posts', Post)
 export class PostController implements CrudController<Post> {
   constructor(public service: PostService) {}
 }

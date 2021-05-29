@@ -1,11 +1,7 @@
-import { CrudOptions } from "@nestjsx/crud";
-import { User } from "../entity/user.entity";
+import { CrudOptions, CrudRequestOptions } from "@nestjsx/crud";
 
-export const UserCrudOption = (): CrudOptions => (
+export const UserCrudRequestOption = (): CrudRequestOptions => (
   {
-    model: {
-      type: User,
-    },
     query: {
       join: {
         posts: {
